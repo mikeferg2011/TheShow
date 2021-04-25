@@ -1,0 +1,14 @@
+name: .venv
+dependencies:
+  - pip
+  - jupyter
+  - pandas
+  - numpy
+  - requests
+  - Flask
+  - beautifulsoup4
+  - Django
+  - pep8
+  - autopep8
+  # - pycodestyle
+  # - toml
