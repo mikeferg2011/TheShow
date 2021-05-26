@@ -13,4 +13,8 @@ To remove virtual environment run `conda env remove -p ./.venv`
 
 To see list of environments run `conda info --envs`
 
-To use cookie_api.py for getting inventory and pack history, cookie.txt is required
+To use cookie_api.py for getting inventory and pack history, cookie.json is required
+
+To know which collections have been completed, include a tracker.json file with status for each team.
+
+If at work need proxies set `{'http':'http://172.23.137.193:8080', 'https':'http://172.23.137.193:8080'}`

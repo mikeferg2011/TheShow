@@ -1,14 +1,16 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+import json
 
+proxies = {'http':'http://172.23.137.193:8080', 'https':'http://172.23.137.193:8080'}
 
 def isNextPage(req):
     return(req.text.find('next_page disabled') == -1)
 
 
 def getPackPage(cooks, page_num, url='https://mlb21.theshow.com/packs/open_pack_history'):
-    return(requests.get(url, params={'page': page_num}, cookies=cooks))
+    return(requests.get(url, params={'page': page_num}, cookies=cooks, proxies=proxies))
 
 
 def parsePackPage(req):
@@ -70,13 +72,13 @@ def getPackHistory(cooks):
 
 
 def getInventoryPage(cooks, page_num, url='https://mlb21.theshow.com/inventory'):
-    return(requests.get(url, params={'ownership': 'owned', 'page': page_num}, cookies=cooks))
+    return(requests.get(url, params={'ownership': 'owned', 'page': page_num}, cookies=cooks, proxies=proxies))
 
 
 def parseInventoryPage(req):
     soup = BeautifulSoup(req.text, features="html.parser")
     inv = soup.find('div', {"class": "section-block"})
-   
+
     table_body = inv.table.tbody
 
     rows = table_body.find_all('tr')
@@ -88,7 +90,7 @@ def parseInventoryPage(req):
         card_dict['name'] = cols[1].text.strip()
         card_dict['url'] = cols[1].a.get('href')
         card_dict['uuid'] = cols[1].a.get('href').rsplit('/', 1)[1]
-        
+
         card_dict['overall'] = cols[2].text.strip()
         rarity = cols[2].img.get('src').rsplit('/', 1)[1]
         if rarity == 'shield-common.png':
@@ -111,6 +113,7 @@ def parseInventoryPage(req):
 
     return(card_list)
 
+
 def getInventory(cooks):
     all_cards = []  # empty array to append all cards in page
     check = True
@@ -124,28 +127,33 @@ def getInventory(cooks):
     return(all_cards)
 
 
-# if __name__ == '__main__':
-#     all_packs = getPackHistory(cooks)
-#     pack_history = pd.DataFrame()
-#     pack_num = 1
-#     for pack in reversed(all_packs):
-#         card_num = 1
-#         for card in pack['cards']:
-#             pack_history = pack_history.append({'pack_nbr': pack_num,
-#                                                 'pack_open': pack['open'],
-#                                                 'pack_type': pack['type'],
-#                                                 'pack_ver': pack['version'],
-#                                                 'card_nbr': card_num,
-#                                                 'card_nm': card['name'],
-#                                                 'card_url': card['url'],
-#                                                 'card_uuid': card['uuid'],
-#                                                 'card_type': card['type'],
-#                                                 'card_rarity': card['rarity']},
-#                                                ignore_index=True)
-#             card_num += 1
-#         pack_num += 1
-#     print(pack_history.head())
+if __name__ == '__main__':
+    with open("cookie.json") as f:
+        cooks = json.loads(f.read())
 
-#     inv_list = getInventory(cooks)
-#     inv_df = pd.DataFrame(inv_list)
-#     print(inv_df.head())
+    all_packs = getPackHistory(cooks)
+    pack_history = pd.DataFrame()
+    pack_num = 1
+    for pack in reversed(all_packs):
+        card_num = 1
+        for card in pack['cards']:
+            pack_history = pack_history.append({'pack_nbr': pack_num,
+                                                'pack_open': pack['open'],
+                                                'pack_type': pack['type'],
+                                                'pack_ver': pack['version'],
+                                                'card_nbr': card_num,
+                                                'card_nm': card['name'],
+                                                'card_url': card['url'],
+                                                'card_uuid': card['uuid'],
+                                                'card_type': card['type'],
+                                                'card_rarity': card['rarity']},
+                                               ignore_index=True)
+            card_num += 1
+        pack_num += 1
+    pack_history.to_csv('./csv/pack_history.csv', index=False)
+    print(pack_history.head())
+
+    inv_list = getInventory(cooks)
+    inv_df = pd.DataFrame(inv_list)
+    inv_df.to_csv('./csv/inventory.csv', index=False)
+    print(inv_df.head())

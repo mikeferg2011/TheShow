@@ -1,0 +1,182 @@
+[
+  {
+    "team": "Angels",
+    "league": "AL",
+    "division": "West",
+    "completed": "No"
+  },
+  {
+    "team": "Astros",
+    "league": "AL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Athletics",
+    "league": "AL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Mariners",
+    "league": "AL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Rangers",
+    "league": "AL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Royals",
+    "league": "AL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Twins",
+    "league": "AL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Tigers",
+    "league": "AL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "White Sox",
+    "league": "AL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Indians",
+    "league": "AL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Blue Jays",
+    "league": "AL",
+    "division": "East",
+    "completed": "Yes"
+  },
+  {
+    "team": "Orioles",
+    "league": "AL",
+    "division": "East",
+    "completed": "Yes"
+  },
+  {
+    "team": "Rays",
+    "league": "AL",
+    "division": "East",
+    "completed": "No"
+  },
+  {
+    "team": "Red Sox",
+    "league": "AL",
+    "division": "East",
+    "completed": "Yes"
+  },
+  {
+    "team": "Yankees",
+    "league": "AL",
+    "division": "East",
+    "completed": "No"
+  },
+  {
+    "team": "Rockies",
+    "league": "NL",
+    "division": "West",
+    "completed": "No"
+  },
+  {
+    "team": "Padres",
+    "league": "NL",
+    "division": "West",
+    "completed": "No"
+  },
+  {
+    "team": "Giants",
+    "league": "NL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Dodgers",
+    "league": "NL",
+    "division": "West",
+    "completed": "No"
+  },
+  {
+    "team": "Diamondbacks",
+    "league": "NL",
+    "division": "West",
+    "completed": "Yes"
+  },
+  {
+    "team": "Reds",
+    "league": "NL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Pirates",
+    "league": "NL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Cubs",
+    "league": "NL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Cardinals",
+    "league": "NL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Brewers",
+    "league": "NL",
+    "division": "Central",
+    "completed": "Yes"
+  },
+  {
+    "team": "Phillies",
+    "league": "NL",
+    "division": "East",
+    "completed": "No"
+  },
+  {
+    "team": "Nationals",
+    "league": "NL",
+    "division": "East",
+    "completed": "No"
+  },
+  {
+    "team": "Mets",
+    "league": "NL",
+    "division": "East",
+    "completed": "No"
+  },
+  {
+    "team": "Marlins",
+    "league": "NL",
+    "division": "East",
+    "completed": "Yes"
+  },
+  {
+    "team": "Braves",
+    "league": "NL",
+    "division": "East",
+    "completed": "No"
+  }
+]
