@@ -122,6 +122,7 @@ def packs():
             tmp_dict['pack_type'] = i['type']
             tmp_dict['version'] = i['version']
             tmp_dict['open'] = i['open']
+            tmp_dict['datetime'] = pd.to_datetime(i['open'], format='Opened %m/%d/%Y %I:%M%p CDT')
             tmp_dict['card_num'] = card_cnt
             tmp_dict['name'] = j['name']
             tmp_dict['url'] = j['url']
@@ -129,8 +130,32 @@ def packs():
             tmp_dict['card_type'] = j['type']
             tmp_dict['rarity'] = j['rarity']
             pack_cards.append(tmp_dict)
+
     df_packs = pd.DataFrame(pack_list)
     df_cards = pd.DataFrame(pack_cards)
+
+    roster_updates = api.get_roster_updates()
+    rarity_cols = ['rarity']
+    for i in roster_updates:
+        print(i['id'])
+        upd_num = i['id']
+        rarity_cols.append(f'rarity_{upd_num}')
+        roster_upd = api.get_roster_update(upd_num)
+        roster_upd.rename(columns={'old_rarity': f'rarity_{upd_num}'}, inplace=True)
+        roster_upd = roster_upd[['uuid', f'rarity_{upd_num}']]
+        df_cards = df_cards.merge(roster_upd, on = 'uuid', how = 'left')
+
+    df_cards[rarity_cols] = df_cards[rarity_cols].fillna(axis=1, method = 'ffill')
+
+    # need logic for picking the right column based on the open datetime
+    roster_upd_df = pd.DataFrame(roster_updates)
+    roster_upd_df['date'] = pd.to_datetime(roster_upd_df.name, format='%B %d, %Y')
+    roster_upd_df['id_1'] = roster_upd_df.id + 1
+    roster_upd_df = roster_upd_df[['id', 'date']].merge(roster_upd_df[['id_1', 'date']], left_on='id', right_on='id_1', how = 'left', suffixes=('_end', '_start'))
+    roster_upd_df = roster_upd_df[['id', 'date_start', 'date_end']].fillna(pd.to_datetime('2000-01-01'))
+    for index, row in roster_upd_df.iterrows():
+        df_cards.loc[(df_cards.datetime >= row.date_start) & (df_cards.datetime < row.date_end), 'rarity'] = df_cards.loc[(df_cards.datetime >= row.date_start) & (df_cards.datetime < row.date_end), f'rarity_{row.id}']
+
     df_card_max = df_cards.loc[df_cards.card_type == 'MLB Card'].groupby(['pack_num', 'pack_type', 'version'])['rarity'].max()
     df_card_max = df_card_max.reset_index()
     df_card_pivot = df_card_max.pivot_table(values = 'pack_num', index = ['pack_type', 'version'], columns = 'rarity', aggfunc = len, fill_value = 0, margins=True)
