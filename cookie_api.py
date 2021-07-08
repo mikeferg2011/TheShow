@@ -64,6 +64,7 @@ def getPackHistory(cooks):
     check = True
     page_num = 1
     while check:
+        print(page_num)
         page = getPackPage(cooks, page_num)
         all_packs += parsePackPage(page)
         page_num += 1

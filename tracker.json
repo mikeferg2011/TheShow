@@ -3,7 +3,7 @@
     "team": "Angels",
     "league": "AL",
     "division": "West",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Astros",
@@ -75,7 +75,7 @@
     "team": "Rays",
     "league": "AL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Red Sox",
@@ -87,19 +87,19 @@
     "team": "Yankees",
     "league": "AL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Rockies",
     "league": "NL",
     "division": "West",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Padres",
     "league": "NL",
     "division": "West",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Giants",
@@ -111,7 +111,7 @@
     "team": "Dodgers",
     "league": "NL",
     "division": "West",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Diamondbacks",
@@ -153,19 +153,19 @@
     "team": "Phillies",
     "league": "NL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Nationals",
     "league": "NL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Mets",
     "league": "NL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   },
   {
     "team": "Marlins",
@@ -177,6 +177,6 @@
     "team": "Braves",
     "league": "NL",
     "division": "East",
-    "completed": "No"
+    "completed": "Yes"
   }
 ]
